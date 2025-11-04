@@ -81,9 +81,25 @@ public class LinkedBinarySearchTree<T extends Comparable<T>> extends LinkedBinar
    */
   public T find(T targetElement) throws ElementNotFoundException{
     // To be completed as a Programming Project
-    return null;
+    find(targetElement, root);
+    if(root == null)
+      throw new ElementNotFoundException("LinkedBinaryTree");
+    return find(targetElement, root);
   }
-
+  private T find(T targetElement, BinaryTreeNode<T> node){
+    if(node == null){
+      return null;
+    }
+    if(targetElement.compareTo(node.getElement()) == 0){
+      return node.getElement();
+    }
+    if(targetElement.compareTo(node.getElement()) < 0){
+     return find(targetElement, node.getLeft());
+    }
+    else{
+      return find(targetElement, node.getRight());
+    }
+  }
   /**
     * Removes the first element that matches the specified target
     * element from the binary search tree and returns a reference to
